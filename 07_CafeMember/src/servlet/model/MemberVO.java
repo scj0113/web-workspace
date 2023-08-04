@@ -6,10 +6,8 @@ public class MemberVO {
 	private int age;
 	private String addr;
 	
-	public MemberVO() {	}
 
 	public MemberVO(String name, int age, String addr) {
-		super();
 		this.name = name;
 		this.age = age;
 		this.addr = addr;
