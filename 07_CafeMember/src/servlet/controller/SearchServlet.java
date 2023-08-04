@@ -26,21 +26,25 @@ public class SearchServlet extends HttpServlet {
 		
 	// 1. 폼 데이터 받아오기
 		String name = request.getParameter("name");
-		int age = Integer.parseInt(request.getParameter("age"));
-		String addr = request.getParameter("addr");
 		
 	// 2. DAO 리턴 받아서
 		MemberDAO dao = new MemberDAO();
 		MemberVO vo = null;
 		try {
 			 vo = dao.findByNameMember(name);
+			
 		} catch (SQLException e) {}
 		
-	// 3. 멤버 정보 1개 바인딩
+		// 3. 멤버 정보 1개 바인딩
 		request.setAttribute("vo", vo);
 		
 	// 4. 네비게이션 -> view.jsp	
-		request.getRequestDispatcher("view.jsp").forward(request, response);
+		if(vo!=null) {
+			request.getRequestDispatcher("view.jsp").forward(request, response);
+		} else {
+			request.getRequestDispatcher("fail.jsp").forward(request, response);
+		}
+		
 	}
 	
 

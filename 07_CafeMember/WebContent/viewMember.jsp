@@ -22,9 +22,15 @@ pageEncoding="UTF-8"%>
      	List<MemberVO> list = (List) request.getAttribute("list");
     %>
     <div class="container">
-     <% if(name!=null) { %>
-    	 <h4><%=name %>님이 방금전 회원가입 하셨습니다..<h4>
-    <% } %> 
+      <h2>회원 조회</h2>
+      <form action="search">
+        검색할 회원 이름을 입력해주세요. <br>
+        <input type="text" name="name">
+        <input type="submit" value="조회">
+      </form>
+
+<hr>
+
     <hr>
       <h2>전체 Cafe 명단 리스트</h2>
       <table class="table">
@@ -39,7 +45,7 @@ pageEncoding="UTF-8"%>
          if(list!=null) {
          for(int i=0; i<list.size(); i++) { %>
         	<tr>
-        		<td><%= i+1 %>></td>
+        		<td><%= i+1 %></td>
         		<td><%= list.get(i).getName() %></td>
         		<td><%= list.get(i).getAge() %></td>
         		<td><%= list.get(i).getAddr() %></td>

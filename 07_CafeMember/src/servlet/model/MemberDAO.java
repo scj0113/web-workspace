@@ -21,11 +21,11 @@ public class MemberDAO implements MemberDAOTemplate {
 	public static void main(String[] args) {
 		MemberDAO dao = new MemberDAO();
 		try {
-			dao.insertMember(new MemberVO("마마마", 3, "바바바"));
-			for(MemberVO vo : dao.showAllMember()) {             // 천제 찾기
-				System.out.println(vo);
-			}
-//			System.out.println(dao.findByNameMember("가가가"));    // 선택으로 찾기
+//			dao.insertMember(new MemberVO("마마마", 3, "바바바"));
+//			for(MemberVO vo : dao.showAllMember()) {             // 천제 찾기
+//				System.out.println(vo);
+//			}
+			System.out.println(dao.findByNameMember("가가가"));    // 선택으로 찾기
 		} catch (SQLException e) {
 		}
 	}
