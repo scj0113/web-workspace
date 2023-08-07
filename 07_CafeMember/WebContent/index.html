@@ -17,14 +17,12 @@
         align-items: center;
         height: 100vh;
       }
-
       h2 {
         margin-bottom: 30px;
       }
       form {
         width: 300px;
       }
-
       button {
         width: 100%;
       }
@@ -37,11 +35,11 @@
       <form
         action="entrance"
         method="post"
-        onsubmit="return checkDate()"
+        onsubmit="return checkData()"
         name="frm"
       >
         <div class="mb-3">
-          <label for="name" class="form-label">이름</label>
+          <label for="name" class="form-label"> 이름 </label>
           <input
             type="text"
             class="form-control"
@@ -51,7 +49,7 @@
           />
         </div>
         <div class="mb-3">
-          <label for="age" class="form-label">나이</label>
+          <label for="age" class="form-label"> 나이 </label>
           <input
             type="text"
             class="form-control"
@@ -61,7 +59,7 @@
           />
         </div>
         <div class="mb-3">
-          <label for="addr" class="form-label">주소</label>
+          <label for="addr" class="form-label"> 주소 </label>
           <input
             type="text"
             class="form-control"
@@ -74,25 +72,24 @@
       </form>
     </div>
     <script>
-      // 나이를 숫자로 입력하지 않았을 때
-      // alert로 숫자를 입력하라고 메시지 띄우고
-      //return false
-      
-      function checkDate() {
- 	//	const regExp = /^[0-9]+$/;
-		const age = document.frm.age.value
-		if(isNaN(age)) {
-			alert('숫자로 입력해주세요!');
-			return false;
-		} else {
-			return true;
-		}
-    //    if (!regExp.test(age)) {
-          
-    //      return true;
-   //     }
-    //    alert("나이를 숫자로 입력하세요.");
-   //     return false;
+    	console.log(document.frm);
+      function checkData() {
+    	 //const regExp = /^[0-9]+$/;
+    	 const age = document.frm.age.value;
+    	 
+    	 if(isNaN(age)) {
+    		 alert('숫자로 입력해주세요!');
+    		 return false;
+    	 } else {
+    		 return true;
+    	 }
+ 	 
+    	 //if(regExp.test(age)) {
+    		 //return true;
+    	 //} else {
+    		 //alert('숫자로 입력해주세요!');
+    		 //return false;
+    	 //}
       }
     </script>
   </body>
