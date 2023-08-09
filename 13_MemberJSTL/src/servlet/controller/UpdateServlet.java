@@ -1,5 +1,4 @@
 package servlet.controller;
-
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -15,35 +14,57 @@ import servlet.model.vo.MemberDTO;
 
 @WebServlet("/UpdateServlet")
 public class UpdateServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-
-        HttpSession session = request.getSession();
-        MemberDTO dto = (MemberDTO) session.getAttribute("dto");
-
-        String changePassword = request.getParameter("changePassword");
-        String changeName = request.getParameter("changeName");
-        String changeAddress = request.getParameter("changeAddress");
-
-        if (changePassword != null && !changePassword.isEmpty()) {
-            dto.setPassword(changePassword);
-        }
-        if (changeName != null && !changeName.isEmpty()) {
-            dto.setName(changeName);
-        }
-        if (changeAddress != null && !changeAddress.isEmpty()) {
-            dto.setAddress(changeAddress);
-        }
-
-        MemberDAO dao = MemberDAO.getInstance();
-        try {
-            dao.UpdateMember(dto);
-            request.getRequestDispatcher("../update_result.jsp").forward(request, response);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+	private static final long serialVersionUID = 1L;
+	
+	
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 1. 폼값 받는다.
+		String id = request.getParameter("id");
+		String password = request.getParameter("password");
+		String name = request.getParameter("name");
+		String address = request.getParameter("address");
+		
+		// 2. 객체 생성
+		MemberDTO dto = new MemberDTO();
+		dto.setId(id);
+		dto.setPassword(password);
+		dto.setName(name);
+		dto.setAddress(address);
+		
+		
+		// 3. DAO 
+		try {
+			MemberDAO.getInstance().UpdateMember(dto);
+			
+			// 4. 데이터 바인딩 - session
+			HttpSession session = request.getSession();
+			if(session.getAttribute("dit")!=null) {
+				session.setAttribute("dto", dto);
+			}
+			
+			
+			// 5. 네비게이션
+			request.getRequestDispatcher("views/update_result.jsp").forward(request, response);
+			
+		} catch (SQLException e) {}
+		
+	
+		
+	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
 }
+
+
+
+
+
+
+
+
+
+
+

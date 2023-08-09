@@ -8,14 +8,13 @@
 <title>로그인 정보</title>
 </head>
 <body>
-    <c:set var="dto" value="${sessionScope.dto}" />
     <c:choose>
-        <c:when test="${not empty dto}">
+        <c:when test="${ !empty dto}">
             <h1>로그인 정보</h1>
             <ul>
-                <li>아이디 : <c:out value="${dto.id}" /></li>
-                <li>이름 : <c:out value="${dto.name}" /></li>
-                <li>주소 : <c:out value="${dto.address}" /></li>
+                <li>아이디 :  ${dto.id} </li>
+                <li>이름 :   ${dto.name} </li>
+                <li>주소 :   ${dto.address}</li>
             </ul>
             <a href="/index.jsp">첫 페이지로 이동</a>
         </c:when>
