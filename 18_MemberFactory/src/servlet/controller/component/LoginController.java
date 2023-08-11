@@ -18,15 +18,11 @@ public class LoginController implements Controller{
 		    
 		  
 		        MemberVO vo = MemberDAO.getInstance().login(id, password);
-		        
+		        HttpSession session = request.getSession();
+  		        
 		        if (vo != null) { 
-		            HttpSession session = request.getSession();
-		            session.setAttribute("vo", vo);
 		            
-		            String path = "views/login_result.jsp";
-		            return new ModelAndView(path); 
-		    
-		           
+		            session.setAttribute("vo", vo);		           
 		}
 		        String path = "views/login_result.jsp";
 				return new ModelAndView(path);

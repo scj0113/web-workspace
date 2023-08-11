@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>Encoding 처리하기</h2>
+	<div>
+		닉네임<input type="text" name="nick" id="nick">
+		<button onclick="startRequest()">닉네임 보내기</button>
+	</div>
+	
+	<div id="resultView">
+	
+	</div>
+	
+	<script>
+	
+	// EncodingServlet 만들기 <-- nick
+
+		let xhr;
+		function startRequest() {
+			xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = callback;
+
+			xhr.open("get", "EncodingServlet?nick=" + encodeURI(encodeURIComponent(nick.value)));
+
+			xhr.send(null);
+		}
+
+		function callback() {
+
+			if (xhr.readyState === 4 && xhr.status === 200) {
+				const text = decodeURI(decodeURIComponent(xhr.responseText));
+				document.querySelector("#resultView").innerHTML = "<h3>" + text + "</h3>";
+			} else {  // readyState 2, 3 
+				      document.querySelector('#resultView').innerHTML = "<img src=img/gom.gif>";
+			}
+		}
+	</script>
+
+
+</body>
+
+</html>
