@@ -1,7 +1,7 @@
 package servlet.controller;
 
 import servlet.controller.Controller;
-import servlet.controller.component.IdCheckController;
+
 
 
 public class HandlerMapping {
@@ -17,7 +17,7 @@ public class HandlerMapping {
         Controller controller = null;
         
         if (command.equals("idCheck.do")) {
-            controller = (Controller) new IdCheckController(); 
+            controller = new idCheckController();
         }
        
         

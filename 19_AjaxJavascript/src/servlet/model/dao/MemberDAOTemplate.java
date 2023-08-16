@@ -18,8 +18,7 @@ public interface MemberDAOTemplate {
 	MemberVO login(String id, String password) throws SQLException;
 	MemberVO findByIdMember(String id) throws SQLException;
 	ArrayList<MemberVO> showAllMember() throws SQLException;
-	void UpdateMember(MemberVO vo) throws SQLException;
-	MemberVO idExist(String id) throws SQLException;
+	void UpdateMember(MemberVO vo) throws SQLException;	
 }
 
 

@@ -174,25 +174,6 @@ public class MemberDAO implements MemberDAOTemplate {
 	    closeAll(ps, conn);
 	}
 
-	@Override
-	public MemberVO idExist(String id) throws SQLException {
-	    Connection conn = getConnection();
-	    
-	    String query = "SELECT * FROM member WHERE id=?";
-	    PreparedStatement ps = conn.prepareStatement(query);
-	    
-	    ps.setString(1, id);
-	    
-	    ResultSet rs = ps.executeQuery();
-	    MemberVO vo = null;
-	    
-	    if (rs.next()) {
-	        vo = new MemberVO();
-	        vo.setId(rs.getString("id"));
-	    }
-	    
-	    closeAll(rs, ps, conn);
-	    return vo;
-	}
+	
 
 }
