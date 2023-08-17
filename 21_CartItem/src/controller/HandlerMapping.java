@@ -16,11 +16,11 @@ public class HandlerMapping {
     public Controller createController(String command) {
         Controller controller = null;
         
-        if (command.equals("idCheck.do")) {
+        if (command.equals("itemList.do")) {
             controller = new ItemListController();
-        } else if(command.equals("idCheck.do")) {
+        } else if(command.equals("itemView.do")) {
             controller = new ItemViewController();
-       
+        
         }
         return controller;
     }
