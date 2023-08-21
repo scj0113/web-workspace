@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 
+	resultMap에서 TB_STUDENT, TB_DEPARTMENT
+	id, result - 앞에서 배운 건 여기까지였다면
+	<association property="department" resultMap="departmentMap"/>
+	
+	showStudent
+ -->
+ 
+ <mapper namespace="studentMapper">
+	
+	  <resultMap id="studentMap" type="model.vo.StudentVO">
+	  
+    	<id property="STUDENT_NO" column="STUDENT_NO"/>
+        <result property="DEPARTMENT_NO" column="DEPARTMENT_NO"/>
+        <result property="STUDENT_NAME" column="STUDENT_NAME"/>
+        <result property="STUDENT_SSN" column="STUDENT_SSN"/>
+        <result property="STUDENT_ADDRESS" column="STUDENT_ADDRESS"/>
+        <result property="ENTRANCE_DATE" column="ENTRANCE_DATE"/>
+        <result property="ABSENCE_YN" column="ABSENCE_YN"/>
+        <result property="COACH_PROFESSOR_NO" column="COACH_PROFESSOR_NO"/>
+    	<association property="department" resultMap="departmentMap"/>
+
+    </resultMap>
+    
+
+    <select id="showStudent" resultMap="studentMap">
+
+    </select>
+
+    
+    
+  
+  
+</mapper>
+
