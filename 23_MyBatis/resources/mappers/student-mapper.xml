@@ -9,30 +9,41 @@
 	showStudent
  -->
  
- <mapper namespace="studentMapper">
-	
-	  <resultMap id="studentMap" type="model.vo.StudentVO">
-	  
-    	<id property="STUDENT_NO" column="STUDENT_NO"/>
+<mapper namespace="studentMapper">
+  
+    <resultMap id="studentMap" type="model.vo.StudentVO">
+        <id property="STUDENT_NO" column="STUDENT_NO"/>
         <result property="DEPARTMENT_NO" column="DEPARTMENT_NO"/>
         <result property="STUDENT_NAME" column="STUDENT_NAME"/>
-        <result property="STUDENT_SSN" column="STUDENT_SSN"/>
         <result property="STUDENT_ADDRESS" column="STUDENT_ADDRESS"/>
-        <result property="ENTRANCE_DATE" column="ENTRANCE_DATE"/>
-        <result property="ABSENCE_YN" column="ABSENCE_YN"/>
-        <result property="COACH_PROFESSOR_NO" column="COACH_PROFESSOR_NO"/>
-    	<association property="department" resultMap="departmentMap"/>
-
+        <association property="department" resultMap="departmentMap"/>
     </resultMap>
     
+    <resultMap id="departmentMap" type="model.vo.DepartmentVO">
+        <id property="DEPARTMENT_NO" column="DEPARTMENT_NO"/>
+        <result property="DEPARTMENT_NAME" column="DEPARTMENT_NAME"/>
+        <result property="CATEGORY" column="CATEGORY"/>
+    </resultMap>
 
-    <select id="showStudent" resultMap="studentMap">
 
+    <select id="searchStudents" parameterType="String" resultMap="studentMap">
+        SELECT
+            s.STUDENT_NO,
+            s.DEPARTMENT_NO,
+            s.STUDENT_NAME,
+            s.STUDENT_ADDRESS,
+            d.DEPARTMENT_NO AS d_DEPARTMENT_NO,
+            d.DEPARTMENT_NAME,
+            d.CATEGORY
+        FROM
+            TB_STUDENT s
+        JOIN
+            TB_DEPARTMENT d ON s.DEPARTMENT_NO = d.DEPARTMENT_NO
+        WHERE
+            s.STUDENT_NAME LIKE '%' || #{word} || '%' OR
+            s.STUDENT_ADDRESS LIKE '%' || #{word} || '%' OR
+            d.DEPARTMENT_NAME LIKE '%' || #{word} || '%' OR
+            d.CATEGORY LIKE '%'|| #{word} || '%'
     </select>
-
-    
-    
-  
-  
 </mapper>
 

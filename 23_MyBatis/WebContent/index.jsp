@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <!--  
+    	첫 페이지 리스트 뿌려주기~
+    	service 호출해서 list에 담아
+    	request.setAttribute로 바인딩!
+     -->
 <!DOCTYPE html>
 <html>
 <head>
