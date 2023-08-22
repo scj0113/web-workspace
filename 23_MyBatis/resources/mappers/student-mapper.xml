@@ -11,39 +11,35 @@
  
 <mapper namespace="studentMapper">
   
-    <resultMap id="studentMap" type="model.vo.StudentVO">
-        <id property="STUDENT_NO" column="STUDENT_NO"/>
-        <result property="DEPARTMENT_NO" column="DEPARTMENT_NO"/>
-        <result property="STUDENT_NAME" column="STUDENT_NAME"/>
-        <result property="STUDENT_ADDRESS" column="STUDENT_ADDRESS"/>
+    <resultMap type="Student" id="studentMap" >
+        <id property="studentNo" column="student_no"/>
+        <result property="studentName" column="student_name"/>
+        <result property="studentAddress" column="student_address"/>
         <association property="department" resultMap="departmentMap"/>
     </resultMap>
     
-    <resultMap id="departmentMap" type="model.vo.DepartmentVO">
-        <id property="DEPARTMENT_NO" column="DEPARTMENT_NO"/>
-        <result property="DEPARTMENT_NAME" column="DEPARTMENT_NAME"/>
-        <result property="CATEGORY" column="CATEGORY"/>
+    <resultMap type="Department" id="departmentMap" >
+        <id property="departmentNo" column="department_no"/>
+        <result property="departmentName" column="department_name"/>
+        <result property="category" column="category"/>
     </resultMap>
 
+<!-- Map사용시 resultMap 아니면 resultType -->
 
-    <select id="searchStudents" parameterType="String" resultMap="studentMap">
-        SELECT
-            s.STUDENT_NO,
-            s.DEPARTMENT_NO,
-            s.STUDENT_NAME,
-            s.STUDENT_ADDRESS,
-            d.DEPARTMENT_NO AS d_DEPARTMENT_NO,
-            d.DEPARTMENT_NAME,
-            d.CATEGORY
-        FROM
-            TB_STUDENT s
-        JOIN
-            TB_DEPARTMENT d ON s.DEPARTMENT_NO = d.DEPARTMENT_NO
-        WHERE
-            s.STUDENT_NAME LIKE '%' || #{word} || '%' OR
-            s.STUDENT_ADDRESS LIKE '%' || #{word} || '%' OR
-            d.DEPARTMENT_NAME LIKE '%' || #{word} || '%' OR
-            d.CATEGORY LIKE '%'|| #{word} || '%'
+    <select id="showStudent" resultMap="studentMap" parameterType="String"> 
+	 	SELECT 
+	 		student_no, student_name, student_address, department_no, department_name, category
+	 	FROM tb_student
+	 	JOIN tb_department USING(department_no)
+	 	<where>
+	 		<if test="word!=null">
+	 			student_no like '%'||#{word}||'%' OR
+	 			student_name like '%'||#{word}||'%' OR
+	 			student_address like '%'||#{word}||'%' OR
+	 			department_name like  '%'||#{word}||'%' OR
+	 			category like  '%'||#{word}||'%'
+	 		</if>
+	 	</where>
     </select>
 </mapper>
 

@@ -30,7 +30,6 @@ public class HandlerMapping {
 			controller = new UpdateController();
 		} else if (command.equals("allShow.do")) {
 			controller = new AllController();
-			System.out.println(controller);
 		}  else if (command.equals("logout.do")) {
 			controller = new LogoutController();
 		}  

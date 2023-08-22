@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE configuration PUBLIC "-//nybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 
 	<properties>
@@ -10,14 +10,14 @@
 	</properties>
 
 	<!-- setting : mybatis 구동시 선언할 설정들을 작성하는 영역 -->
-	<settings>
+	<settings> 
 		<!-- 만약 null로 데이터가 전달된다면 빈칸이 아닌 null로 인식해라 -->
 		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
 
 	<!-- typeAlias : VO/DTO 클래스들의 풀클래스명을 단순한 클래스명으로 사용하기 위해서 별칭을 등록할 수 있는 영역  -->
 	
-	<typeAliases>
+	<typeAliases> <!-- ********* 시험에 나올듯 ********* -->
 		<typeAlias type="model.vo.StudentVO" alias="Student" />
 			<typeAlias type="model.vo.DepartmentVO" alias="Department" />
 	</typeAliases>
@@ -54,7 +54,7 @@
 	</environments>
 	
 	<!--  mapper : 실행할 sql문들을 기록해둔 mapper 파일들을 등록하는 영역 -->
-	<mappers>
+	<mappers>  <!-- ********* 시험에 나올듯 ********* -->
 		<mapper resource="mappers/student-mapper.xml"/>
 	</mappers>
 	
