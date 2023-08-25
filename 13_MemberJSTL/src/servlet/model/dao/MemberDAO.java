@@ -178,3 +178,4 @@ public class MemberDAO implements MemberDAOTemplate {
 	    closeAll(ps, conn);
 	}
 }
+

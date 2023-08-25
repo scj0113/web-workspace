@@ -117,7 +117,6 @@ public class MemberRepository implements MemberDAOTemplate {
 	}
 	
 	
-
 	@Override
 	public void UpdateMember(MemberDTO dto) throws SQLException {
 	    Connection conn = getConnection();
